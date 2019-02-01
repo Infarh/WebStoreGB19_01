@@ -1,5 +1,4 @@
-﻿@using System
-@model IEnumerable<WebStore.Models.EmployeeViewModel>
+﻿@model IEnumerable<WebStore.Models.EmployeeViewModel>
 
 @{
     ViewData["Title"] = "Заголовок";
@@ -8,18 +7,11 @@
     Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" charset="utf-8" />
-    <title>WebStore app</title>
-</head>
-<body>
-    <section>
-        <div>
-            <h3>Сотрудники</h3>
-            <table>
-                <thead>
+<section>
+    <div>
+        <h3>Сотрудники</h3>
+        <table>
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>Фамилия</th>
@@ -27,8 +19,8 @@
                     <th>Отчество</th>
                     <th>Возраст</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 @foreach (var employee in Model)
                 {
                     <tr>
@@ -39,26 +31,24 @@
                         <td>@employee.Age</td>
                     </tr>
                 }
-                </tbody>
-            </table>
-            
-            <hr/>
-            @foreach (var employee in Model)
+            </tbody>
+        </table>
+
+        <hr />
+        @foreach (var employee in Model)
+        {
+            using (Html.BeginForm())
             {
-                using (Html.BeginForm())
-                 {
-                     <div>
-                         @*@Html.EditorForModel()*@
-                         @Html.LabelFor(m => employee.FirstName)
-                         @Html.EditorFor(m => employee.FirstName)
-                     </div>
-                     <div>
-                         <input type="submit" value="Отправить"/>
-                     </div>
-                     <a href="@Url.Action("Index", "Home")"> ссылка</a>
-                 }
+                <div>
+                    @*@Html.EditorForModel()*@
+                    @Html.LabelFor(m => employee.FirstName)
+                    @Html.EditorFor(m => employee.FirstName)
+                </div>
+                <div>
+                    <input type="submit" value="Отправить" />
+                </div>
+                <a href="@Url.Action("Index", "Home")"> ссылка</a>
             }
-        </div>
-    </section>
-</body>
-</html>
+        }
+    </div>
+</section>

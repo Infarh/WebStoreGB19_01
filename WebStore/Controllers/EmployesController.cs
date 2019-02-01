@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Models;
 
@@ -9,7 +6,7 @@ namespace WebStore.Controllers
 {
     public class EmployesController : Controller
     {
-        private static List<EmployeeViewModel> __Employes = new List<EmployeeViewModel>
+        private static readonly List<EmployeeViewModel> __Employes = new List<EmployeeViewModel>
         {
             new EmployeeViewModel { Id = 0, FirstName = "Иван", SecondName = "Иванов", Patronymic = "Иванович", Age = 28 },
             new EmployeeViewModel { Id = 0, FirstName = "Пётр", SecondName = "Петров", Patronymic = "Петрович", Age = 35 },
