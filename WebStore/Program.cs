@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 
 namespace WebStore
 {
+    /// <summary>
+    /// Main class
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
