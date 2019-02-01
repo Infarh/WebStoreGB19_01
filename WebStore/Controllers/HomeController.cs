@@ -12,8 +12,8 @@ namespace WebStore.Controllers
         private static List<EmployeeViewModel> _Employes = new List<EmployeeViewModel>
         {
             new EmployeeViewModel { Id = 0, FirstName = "Иван", SecondName = "Иванов", Patronymic = "Иванович", Age = 28 },
-            new EmployeeViewModel { Id = 0, FirstName = "Пётр", SecondName = "Петров", Patronymic = "Петрович", Age = 35 },
-            new EmployeeViewModel { Id = 0, FirstName = "Сидор", SecondName = "Сидоров", Patronymic = "Сидорович", Age = 22 },
+            new EmployeeViewModel { Id = 1, FirstName = "Пётр", SecondName = "Петров", Patronymic = "Петрович", Age = 35 },
+            new EmployeeViewModel { Id = 2, FirstName = "Сидор", SecondName = "Сидоров", Patronymic = "Сидорович", Age = 22 },
         };
 
         public HomeController()
