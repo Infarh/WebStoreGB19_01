@@ -9,7 +9,7 @@ namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        private static List<EmployeeViewModel> __Employes = new List<EmployeeViewModel>
+        private static List<EmployeeViewModel> _Employes = new List<EmployeeViewModel>
         {
             new EmployeeViewModel { Id = 0, FirstName = "Иван", SecondName = "Иванов", Patronymic = "Иванович", Age = 28 },
             new EmployeeViewModel { Id = 0, FirstName = "Пётр", SecondName = "Петров", Patronymic = "Петрович", Age = 35 },
@@ -23,7 +23,7 @@ namespace WebStore.Controllers
 
         public IActionResult Index()
         {
-            return View(__Employes);
+            return View(_Employes);
         }  
     }
 }

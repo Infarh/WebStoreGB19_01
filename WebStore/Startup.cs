@@ -40,11 +40,6 @@ namespace WebStore
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            //app.Run(async context =>
-            //{
-            //    await context.Response.WriteAsync("Hello World");
-            //});
         }
     }
 }
