@@ -8,9 +8,11 @@
 }
 
 <section>
-    <div>
+    <div class="container">
         <h3>Сотрудники</h3>
-        <table>
+        <a asp-controller="Employes" asp-action="Edit" class="btn btn-success">Создать</a>
+        <hr/>
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -18,37 +20,38 @@
                     <th>Имя</th>
                     <th>Отчество</th>
                     <th>Возраст</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var employee in Model)
                 {
-                    <tr>
-                        <td>@employee.Id</td>
-                        <td>@employee.SecondName</td>
-                        <td>@employee.FirstName</td>
-                        <td>@employee.Patronymic</td>
-                        <td>@employee.Age</td>
-                    </tr>
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.SecondName</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.Patronymic</td>
+                    <td>@employee.Age</td>
+                    <td>
+                        <a asp-controller="Employes" asp-action="Details" asp-route-id="@employee.Id">
+                            Детали
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Employes" asp-action="Edit" asp-route-id="@employee.Id">
+                            Ред.
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Employes" asp-action="Delete" asp-route-id="@employee.Id">
+                            Удаление
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
-
-        <hr />
-        @foreach (var employee in Model)
-        {
-            using (Html.BeginForm())
-            {
-                <div>
-                    @*@Html.EditorForModel()*@
-                    @Html.LabelFor(m => employee.FirstName)
-                    @Html.EditorFor(m => employee.FirstName)
-                </div>
-                <div>
-                    <input type="submit" value="Отправить" />
-                </div>
-                <a href="@Url.Action("Index", "Home")"> ссылка</a>
-            }
-        }
     </div>
 </section>

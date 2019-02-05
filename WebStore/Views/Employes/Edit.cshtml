@@ -1,0 +1,27 @@
+﻿@model EmployeeViewModel
+@{
+    ViewData["Title"] = "Редактирование карточки сотрудника";
+}
+
+<section>
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        <hr/>
+        
+        <div class="row">
+            <div class="col-md-4">
+                @using (Html.BeginForm(FormMethod.Post))
+                {
+                    @Html.EditorForModel()
+
+                    <div class="form-group">
+                        <input type="submit" value="Сохранить" class="btn btn-default"/>
+                    </div>
+                }
+            </div>
+        </div>
+        <hr/>
+        @Html.ActionLink("Назад", "Index", "Employes", null, new { @class = "btn btn-default" } )
+    </div>
+</section>
+

@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using WebStore.Infrastucture.Conventions;
+using WebStore.Infrastucture.Filters;
+using WebStore.Infrastucture.Implementations;
+using WebStore.Infrastucture.Interfaces;
 using WebStore.Infrastucture.Middleware;
 
 namespace WebStore
@@ -10,7 +14,18 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                //options.Filters.Add<TestActionFilter>();
+                //options.Filters.Add(typeof(TestResultFilter));
+                //options.Filters.Add(new TestActionFilter());
+
+                //options.Conventions.Add(new TestConvention());
+            });
+
+            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+            //services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
+            //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -50,6 +65,7 @@ namespace WebStore
             //app.UseMiddleware<TestMiddleware>();
             app.UseTestMiddleware();
 
+            //app.UseMvcWithDefaultRoute();
             app.UseMvc(route =>
             {
                 route.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
