@@ -54,6 +54,7 @@ namespace WebStore.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(EmployeeViewModel model)
         {
             if (!ModelState.IsValid)
@@ -77,6 +78,7 @@ namespace WebStore.Controllers
             return RedirectToAction("Index");
         }
 
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int? id)
         {
             if (id is null)
