@@ -30,39 +30,10 @@ namespace WebStore
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            //app.Use(async (context, next) =>
-            //{
-            //    if (true)
-            //    {
-            //        await context.Response.WriteAsync("Некий ответ");
-            //    }
-            //    else
-            //        await next();
-            //});
-
-            app.MapWhen(
-                ctx => ctx.Request.Query.ContainsKey("TestId")
-                       && ctx.Request.Query["TestId"] == "5",
-                a =>
-                {
-                    a.Run(async ctx => await ctx.Response.WriteAsync("Test data id 5"));
-                }
-            );
-
-            app.Map("/TestPath", a =>
-            {
-                a.Run(async ctx => await ctx.Response.WriteAsync("Test data"));
-            });
-
-            //app.UseMiddleware<TestMiddleware>();
-            app.UseTestMiddleware();
-
-            //app.UseMvcWithDefaultRoute();
             app.UseMvc(route =>
             {
                 route.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
-            //app.Run(ctx => ctx.Response.WriteAsync("Hello world"));
         }
     }
 }
