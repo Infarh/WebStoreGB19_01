@@ -58,7 +58,11 @@ namespace WebStore.Controllers
         public IActionResult Edit(EmployeeViewModel model)
         {
             if (!ModelState.IsValid)
+            {
+                if(model.Age % 2 == 0)
+                    ModelState.AddModelError("Ошибка возраста", "Возраст должен быть нечётным");
                 return View(model);
+            }
             if (model.Id == 0)
             {
                 _EmployeesData.AddNew(model);

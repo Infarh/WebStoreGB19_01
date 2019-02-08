@@ -10,7 +10,33 @@
     <div class="col-md-4">
         @using (Html.BeginForm(FormMethod.Post))
         {
-            @Html.EditorForModel()
+            @*@Html.EditorForModel()*@
+
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="form-group">
+                @Html.ValidationSummary()
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName)
+                @Html.EditorFor(m => m.FirstName)
+                @Html.ValidationMessageFor(m => m.FirstName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SecondName)
+                @Html.EditorFor(m => m.SecondName)
+                @Html.ValidationMessageFor(m => m.SecondName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Patronymic)
+                @Html.EditorFor(m => m.Patronymic)
+                @Html.ValidationMessageFor(m => m.Patronymic)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Age)
+                @Html.EditorFor(m => m.Age)
+                @Html.ValidationMessageFor(m => m.Age)
+            </div>
 
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-default" />
