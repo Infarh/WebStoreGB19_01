@@ -4,13 +4,10 @@
     ViewData["Title"] = "Детали сотрудника";
 }
 
-<section>
-    <div class="container">
-        <h2>@ViewData["Title"]</h2>
-        
-        @Html.DisplayForModel()
-        
-        <hr/>
-        @Html.ActionLink("К списку", "Index", "Employes")
-    </div>
-</section>
+
+<h2>@ViewData["Title"]</h2>
+
+@Html.DisplayForModel()
+
+<hr />
+@Html.ActionLink("К списку", "Index", "Employes")
