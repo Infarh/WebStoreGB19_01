@@ -14,18 +14,10 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
-            {
-                //options.Filters.Add<TestActionFilter>();
-                //options.Filters.Add(typeof(TestResultFilter));
-                //options.Filters.Add(new TestActionFilter());
-
-                //options.Conventions.Add(new TestConvention());
-            });
+            services.AddMvc();
 
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
-            //services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
-            //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
+            services.AddSingleton<IProductData, InMemoryProductData>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

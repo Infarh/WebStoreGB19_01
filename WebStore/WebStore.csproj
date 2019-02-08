@@ -15,4 +15,8 @@
     <Folder Include="Views\Home\Partial\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebStore.DomainEntities\WebStore.DomainEntities.csproj" />
+  </ItemGroup>
+
 </Project>
