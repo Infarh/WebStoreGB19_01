@@ -24,8 +24,9 @@ namespace WebStore
         {
             services.AddMvc();
 
-            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
-            services.AddSingleton<IProductData, InMemoryProductData>();
+            services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
+            //services.AddScoped<IProductData, InMemoryProductData>();
+            services.AddScoped<IProductData, SqlProductData>();
 
             services.AddDbContext<WebStoreContext>(opt =>
             {
