@@ -24,6 +24,7 @@ namespace WebStore.Domain.Entities
         public virtual Brand Brand { get; set; }
 
         //[Column("ProductPrice")]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
 
         [NotMapped]
