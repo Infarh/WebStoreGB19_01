@@ -15,5 +15,10 @@ namespace WebStore.DAL.Context
          public DbSet<Section> Sections { get; set; }
 
          public DbSet<Product> Products { get; set; }
+
+         protected override void OnModelCreating(ModelBuilder model)
+         {
+             base.OnModelCreating(model);
+         }
     }
 }
