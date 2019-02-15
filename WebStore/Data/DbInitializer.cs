@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.Context;
+using WebStore.Infrastucture;
 
 namespace WebStore.Data
 {
@@ -13,7 +11,7 @@ namespace WebStore.Data
         {
             context.Database.EnsureCreated();
 
-            if(context.Products.Any()) return;
+            if (context.Products.Any()) return;
 
             using (var transaction = context.Database.BeginTransaction())
             {
@@ -35,16 +33,14 @@ namespace WebStore.Data
                 context.SaveChanges();
                 context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Brands] OFF");
                 transaction.Commit();
-            } 
+            }
 
             using (var transaction = context.Database.BeginTransaction())
             {
                 foreach (var product in TestData.Products)
                     context.Products.Add(product);
 
-                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Products] ON");
-                context.SaveChanges();
-                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Products] OFF");
+                using (context.Products.IdentityInsert()) context.SaveChanges();
                 transaction.Commit();
             }
         }
