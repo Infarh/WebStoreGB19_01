@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Home\Partial\" />
+    <Folder Include="Views\Shared\Components\LoginLogout\" />
   </ItemGroup>
 
   <ItemGroup>
