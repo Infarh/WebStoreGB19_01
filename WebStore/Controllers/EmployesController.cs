@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebStore.Infrastucture.Interfaces;
 using WebStore.Models;
 
@@ -7,6 +8,7 @@ namespace WebStore.Controllers
     //[Route("Users")]
     //[TestActionFilter]
     //[ServiceFilter(typeof(TestResultFilter))]
+    [Authorize]
     public class EmployesController : Controller
     {
         private readonly IEmployeesData _EmployeesData;
@@ -36,6 +38,7 @@ namespace WebStore.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = Domain.Entities.User.AdminRole)]
         public IActionResult Edit(int? id)
         {
             if (id is null)
@@ -55,11 +58,12 @@ namespace WebStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Domain.Entities.User.AdminRole)]
         public IActionResult Edit(EmployeeViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                if(model.Age % 2 == 0)
+                if (model.Age % 2 == 0)
                     ModelState.AddModelError("Ошибка возраста", "Возраст должен быть нечётным");
                 return View(model);
             }
@@ -83,6 +87,7 @@ namespace WebStore.Controllers
         }
 
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Domain.Entities.User.AdminRole)]
         public IActionResult Delete(int? id)
         {
             if (id is null)
@@ -94,24 +99,6 @@ namespace WebStore.Controllers
             _EmployeesData.Delete((int)id);
 
             return RedirectToAction("Index");
-        }
-
-        public IActionResult TestAction()
-        {
-            //return new ContentResult();
-            //return new EmptyResult();
-            //return new FileResult();
-            //return new FileContentResult();
-            //return new FileStreamResult();
-            //return new StatusCodeResult(404);
-            //return new UnauthorizedResult();
-            //return new JsonResult();
-            //return new PartialViewResult();
-
-            //return Redirect();
-            //return new RedirectResult();
-            //return new RedirectToActionResult();
-            return new EmptyResult();
         }
     }
 }

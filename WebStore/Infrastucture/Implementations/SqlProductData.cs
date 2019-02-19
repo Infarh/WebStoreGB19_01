@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
 using WebStore.Infrastucture.Interfaces;
@@ -29,8 +29,15 @@ namespace WebStore.Infrastucture.Implementations
         public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
         {
             if (Filter is null)
-                return _db.Products.AsEnumerable();
-            IQueryable<Product> result = _db.Products;
+                return _db.Products
+                    .Include(p => p.Brand)
+                    .Include(p => p.Section)
+                    .AsEnumerable();
+
+            IQueryable<Product> result = _db.Products
+                .Include(p => p.Brand)
+                .Include(p => p.Section);
+
             if (Filter.BrandId != null)
                 result = result.Where(p => p.BrendId == Filter.BrandId);
             if (Filter.SectionId != null)
@@ -40,7 +47,10 @@ namespace WebStore.Infrastucture.Implementations
 
         public Product GetProductById(int id)
         {
-            return _db.Products.FirstOrDefault(p => p.Id == id);
+            return _db.Products
+                .Include(p => p.Brand)
+                .Include(p => p.Section)
+                .FirstOrDefault(p => p.Id == id);
         }
     }
 }

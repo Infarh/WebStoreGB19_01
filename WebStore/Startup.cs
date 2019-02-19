@@ -30,6 +30,7 @@ namespace WebStore
             services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
             //services.AddScoped<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SqlProductData>();
+            services.AddScoped<ICartService, CookieCartService>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<WebStoreContext>()
@@ -55,7 +56,7 @@ namespace WebStore
                 opt.Cookie.HttpOnly = true;
                 opt.Cookie.Expiration = TimeSpan.FromDays(150);
 
-                opt.LoginPath = "/Accout/Login";
+                opt.LoginPath = "/Account/Login";
                 opt.LogoutPath = "/Account/Logout";
                 opt.AccessDeniedPath = "/Account/AccessDenided";
 

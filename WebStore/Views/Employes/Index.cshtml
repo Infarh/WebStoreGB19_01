@@ -2,10 +2,14 @@
 
 @{
     ViewData["Title"] = "Заголовок";
+    var is_admin = User.IsInRole("Admin");
 }
 
 <h3>Сотрудники</h3>
-<a asp-controller="Employes" asp-action="Edit" class="btn btn-success">Создать</a>
+@if (is_admin)
+{
+    <a asp-controller="Employes" asp-action="Edit" class="btn btn-success">Создать</a>
+}
 <hr />
 <table class="table">
     <thead>
@@ -16,8 +20,11 @@
             <th>Отчество</th>
             <th>Возраст</th>
             <th></th>
-            <th></th>
-            <th></th>
+            @if (is_admin)
+            {
+                <th></th>
+                <th></th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -34,16 +41,19 @@
                         Детали
                     </a>
                 </td>
-                <td>
-                    <a asp-controller="Employes" asp-action="Edit" asp-route-id="@employee.Id">
-                        Ред.
-                    </a>
-                </td>
-                <td>
-                    <a asp-controller="Employes" asp-action="Delete" asp-route-id="@employee.Id">
-                        Удаление
-                    </a>
-                </td>
+                @if (is_admin)
+                {
+                    <td>
+                        <a asp-controller="Employes" asp-action="Edit" asp-route-id="@employee.Id">
+                            Ред.
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Employes" asp-action="Delete" asp-route-id="@employee.Id">
+                            Удаление
+                        </a>
+                    </td>
+                }
             </tr>
         }
     </tbody>

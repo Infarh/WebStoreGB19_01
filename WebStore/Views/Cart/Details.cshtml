@@ -1,0 +1,78 @@
+﻿@model CartViewModel
+@{
+    ViewData["Title"] = "Корзина";
+    Layout = "_LayoutBase";
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a asp-controller="Home" asp-action="Index">Домой</a></li>
+                <li class="active">Корзина</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Товар</td>
+                        <td class="description"></td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Количество</td>
+                        <td class="total">Итого</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href=""><img src="images/cart/one.png" alt=""></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4>
+                                    <a asp-controller="Catalog"
+                                       asp-action="ProductDetails"
+                                       asp-route-id="@item.Key.Id">@item.Key.Name</a>
+                                </h4>
+                                <p>Артикул: 1089772</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@(item.Key.Price.ToString("C"))</p>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <a class="cart_quantity_up"
+                                       asp-controller="Cart"
+                                       asp-action="AddToCart"
+                                       asp-route-Id="@item.Key.Id"
+                                       asp-route-ReturnUrl="@Context.Request.Path">+</a>
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                                    <a class="cart_quantity_down"
+                                       asp-controller="Cart"
+                                       asp-action="DecrementFromCart"
+                                       asp-route-id="@item.Key.Id">-</a>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">
+                                    @((item.Key.Price * item.Value).ToString("C"))
+                                </p>
+                            </td>
+                            <td class="cart_delete">
+                                <a class="cart_quantity_delete"
+                                   asp-controller="Cart"
+                                   asp-action="RemoveFromCart"
+                                   asp-route-Id="@item.Key.Id">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section> <!--/#cart_items-->
