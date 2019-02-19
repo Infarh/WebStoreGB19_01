@@ -22,6 +22,7 @@ namespace WebStore
                 {
                     var db = services.GetRequiredService<WebStoreContext>();
                     db.Initialize();
+                    services.InitializeIdentityAsync().Wait();
                 }
                 catch (Exception e)
                 {
