@@ -62,10 +62,10 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                            <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a asp-controller="Home" asp-action="CheckOut"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a asp-controller="Home" asp-action="Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> Профиль</a></li>
+                            <li><a href="#"><i class="fa fa-star"></i> Список желаний</a></li>
+                            <li><a asp-controller="Home" asp-action="CheckOut"><i class="fa fa-crosshairs"></i> Оформление</a></li>
+                            <li><a asp-controller="Cart" asp-action="Details"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
                             @await Component.InvokeAsync("LoginLogout")
                             @*<li><a asp-controller="Home" asp-action="Login"><i class="fa fa-lock"></i> Login</a></li>*@
                             @*@Html.ActionLink("Login", "Login", "Home")*@
@@ -94,24 +94,24 @@
                             @*<li><a href="index.html" class="active">Home</a></li>*@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li class="dropdown">
-                                <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                <a href="#">Каталог<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a asp-controller="Catalog" asp-action="Shop">Products</a></li>
-                                    <li><a asp-controller="Catalog" asp-action="ProductDetails">Product Details</a></li>
-                                    <li><a asp-controller="Home" asp-action="CheckOut">Checkout</a></li>
-                                    <li><a asp-controller="Home" asp-action="Cart">Cart</a></li>
+                                    <li><a asp-controller="Catalog" asp-action="Shop">Товары</a></li>
+                                    <li><a asp-controller="Catalog" asp-action="ProductDetails">Описание товара</a></li>
+                                    <li><a asp-controller="Home" asp-action="CheckOut">Оформление</a></li>
+                                    <li><a asp-controller="Cart" asp-action="Details">Корзина</a></li>
                                     @*<li><a asp-controller="Home" asp-action="Login">Login</a></li>*@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                <a href="#">Блог<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a asp-controller="Home" asp-action="Blog">Blog List</a></li>
-                                    <li><a asp-controller="Home" asp-action="BlogSingle">Blog Single</a></li>
+                                    <li><a asp-controller="Home" asp-action="Blog">Блоги</a></li>
+                                    <li><a asp-controller="Home" asp-action="BlogSingle">Блог</a></li>
                                 </ul>
                             </li>
                             <li><a asp-controller="Home" asp-action="ErrorPage404">404</a></li>
-                            <li><a asp-controller="Home" asp-action="ContactUs">Contact</a></li>
+                            <li><a asp-controller="Home" asp-action="ContactUs">Контакты</a></li>
                             <li><a asp-controller="Employes" asp-action="Index">Сотрудники</a></li>
                         </ul>
                     </div>

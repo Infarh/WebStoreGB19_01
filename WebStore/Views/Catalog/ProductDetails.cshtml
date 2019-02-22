@@ -59,10 +59,12 @@
                         <span>@Model.Price.ToString("C")</span>
                         <label>Количество:</label>
                         <input type="text" value="3" />
-                        <button type="button" class="btn btn-default cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Добавить
-                        </button>
+                        <a asp-controller="Cart" asp-action="AddToCart"
+                           asp-route-Id="@Model.Id"
+                           asp-route-ReturnUrl="@Context.Request.Path" 
+                           class="btn btn-default cart">
+                            <i class="fa fa-shopping-cart"></i>Добавить в корзину
+                        </a>
                     </span>
                     <p><b>Доступность:</b> In Stock</p>
                     <p><b>Состояние:</b> New</p>
@@ -71,10 +73,7 @@
                 </div><!--/product-information-->
             </div>
         </div><!--/product-details-->
-
        @await Html.PartialAsync("Partial/_CategoryTab")
-
        @await Html.PartialAsync("Partial/_RecomendedItems")
-
     </div>
 </div>
