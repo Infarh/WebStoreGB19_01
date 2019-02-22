@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Home\Partial\" />
     <Folder Include="Views\Shared\Components\LoginLogout\" />
   </ItemGroup>
