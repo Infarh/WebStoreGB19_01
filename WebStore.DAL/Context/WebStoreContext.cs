@@ -18,9 +18,8 @@ namespace WebStore.DAL.Context
 
          public DbSet<Product> Products { get; set; }
 
-         protected override void OnModelCreating(ModelBuilder model)
-         {
-             base.OnModelCreating(model);
-         }
+         public DbSet<Order> Orders { get; set; }
+
+         public DbSet<OrderItem> OrderItems { get; set; }
     }
 }
