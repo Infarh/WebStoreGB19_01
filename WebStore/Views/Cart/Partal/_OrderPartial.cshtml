@@ -1,0 +1,33 @@
+﻿@model OrderViewModel
+
+<form method="post" asp-antiforgery="true" asp-action="CheckOut">
+    <div class="col-sm-6">
+        <input asp-for="Name" placeholder="@nameof(Model.Name)" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+
+        <input asp-for="PhoneNumber" placeholder="@nameof(Model.PhoneNumber)" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+        <input asp-for="Address" placeholder="@nameof(Model.Address)" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div> 
+    @{
+        ViewData.TryGetValue("SumCart", out var SumCart);
+    }
+    <div class="col-sm-6">
+        <div class="total_area">
+            @if (SumCart != null)
+            {
+                var sum = (decimal) SumCart;
+                <ul>
+                    <li>Итого <span>@sum.ToString("C")</span></li>
+                </ul>
+                if (sum > 0)
+                {
+                    <input type="submit" value="Оформить заказ"/>
+                }
+            }
+        </div>
+    </div>
+
+</form>

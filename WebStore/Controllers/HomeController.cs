@@ -8,8 +8,6 @@ namespace WebStore.Controllers
          
         public IActionResult ContactUs() => View();
 
-        public IActionResult CheckOut() => View();
-
         public IActionResult Cart() => View();
 
         public IActionResult BlogSingle() => View();
