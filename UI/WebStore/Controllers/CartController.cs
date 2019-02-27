@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebStore.Infrastucture.Interfaces;
-using WebStore.Models;
+using WebStore.Domain.ViewModels;
+using WebStore.Interfaces;
 
 namespace WebStore.Controllers
 {

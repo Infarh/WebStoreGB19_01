@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using WebStore.Infrastucture.Interfaces;
-using WebStore.Models;
+using WebStore.Domain.ViewModels;
+using WebStore.Interfaces;
 
-namespace WebStore.Infrastucture.Implementations
+namespace WebStore.Services
 {
-    class InMemoryEmployeesData : IEmployeesData
+    public class InMemoryEmployeesData : IEmployeesData
     {
         private readonly List<EmployeeViewModel> _Employes = new List<EmployeeViewModel>
         {
