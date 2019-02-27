@@ -1,0 +1,12 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Тест Веб-сервиса";
+}
+
+<h2>Тест Веб-сервиса</h2>
+
+@foreach (var str in Model)
+{
+    <p>@str</p>
+}
