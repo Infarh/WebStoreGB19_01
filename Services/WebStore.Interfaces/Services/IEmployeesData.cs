@@ -5,10 +5,16 @@ namespace WebStore.Interfaces.Services
 {
     public interface IEmployeesData
     {
-        IEnumerable<EmployeeViewModel> Get();
+        IEnumerable<EmployeeViewModel> GetAll();
+
         EmployeeViewModel GetById(int id);
+
+        EmployeeViewModel UpdateEmployee(int id, EmployeeViewModel employee);
+
         void AddNew(EmployeeViewModel NewEmployee);
+
         void Delete(int id);
+
         void SaveChanges();
     }
 }
