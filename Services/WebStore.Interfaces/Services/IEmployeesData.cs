@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using WebStore.Domain.ViewModels;
 
-namespace WebStore.Interfaces
+namespace WebStore.Interfaces.Services
 {
     public interface IEmployeesData
     {

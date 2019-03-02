@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Interfaces;
+using WebStore.Interfaces.Services;
 
 namespace WebStore.Areas.Admin.Controllers
 {
