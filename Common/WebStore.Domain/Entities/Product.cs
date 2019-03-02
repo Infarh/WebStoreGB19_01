@@ -18,9 +18,9 @@ namespace WebStore.Domain.Entities
         [ForeignKey(nameof(SectionId))]
         public virtual Section Section { get; set; }
 
-        public int BrendId { get; set; }
+        public int BrandId { get; set; }
 
-        [ForeignKey(nameof(BrendId))]
+        [ForeignKey(nameof(BrandId))]
         public virtual Brand Brand { get; set; }
 
         //[Column("ProductPrice")]

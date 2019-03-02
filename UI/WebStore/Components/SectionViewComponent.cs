@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebStore.Infrastucture.Interfaces;
-using WebStore.Models;
+using WebStore.Domain.ViewModels;
+using WebStore.Interfaces;
 
 namespace WebStore.Components
 {

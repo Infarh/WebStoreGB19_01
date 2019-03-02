@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebStore.Infrastucture.Interfaces;
+using WebStore.Interfaces;
 
 namespace WebStore.Areas.Admin.Controllers
 {

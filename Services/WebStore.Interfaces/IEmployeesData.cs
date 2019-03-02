@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebStore.Models;
+﻿using System.Collections.Generic;
+using WebStore.Domain.ViewModels;
 
-namespace WebStore.Infrastucture.Interfaces
+namespace WebStore.Interfaces
 {
     public interface IEmployeesData
     {

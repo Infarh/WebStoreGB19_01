@@ -3,9 +3,9 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
-using WebStore.Infrastucture.Interfaces;
+using WebStore.Interfaces;
 
-namespace WebStore.Infrastucture.Implementations
+namespace WebStore.Services
 {
     public class SqlProductData : IProductData
     {
@@ -39,7 +39,7 @@ namespace WebStore.Infrastucture.Implementations
                 .Include(p => p.Section);
 
             if (Filter.BrandId != null)
-                result = result.Where(p => p.BrendId == Filter.BrandId);
+                result = result.Where(p => p.BrandId == Filter.BrandId);
             if (Filter.SectionId != null)
                 result = result.Where(p => p.SectionId == Filter.SectionId);
             return result.AsEnumerable();

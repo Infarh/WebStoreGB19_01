@@ -7,11 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
-using WebStore.Infrastucture;
 
-namespace WebStore.Data
+namespace WebStore.Services.Data
 {
-    internal static class DbInitializer
+    public static class DbInitializer
     {
         public static void Initialize(this WebStoreContext context)
         {
@@ -46,7 +45,11 @@ namespace WebStore.Data
                 foreach (var product in TestData.Products)
                     context.Products.Add(product);
 
-                using (context.Products.IdentityInsert()) context.SaveChanges();
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Products] ON");
+                context.SaveChanges();
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Products] OFF");
+                
+//                using (context.Products.IdentityInsert()) context.SaveChanges();
                 transaction.Commit();
             }
         }

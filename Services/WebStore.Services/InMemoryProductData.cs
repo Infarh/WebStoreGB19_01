@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Internal;
-using WebStore.Data;
 using WebStore.Domain.Entities;
-using WebStore.Infrastucture.Interfaces;
+using WebStore.Interfaces;
+using WebStore.Services.Data;
 
-namespace WebStore.Infrastucture.Implementations
+namespace WebStore.Services
 {
     class InMemoryProductData : IProductData
     {
@@ -19,7 +16,7 @@ namespace WebStore.Infrastucture.Implementations
             if (Filter is null) return TestData.Products;
             var result = TestData.Products.AsEnumerable();
             if (Filter.BrandId != null)
-                result = result.Where(product => product.BrendId == Filter.BrandId);
+                result = result.Where(product => product.BrandId == Filter.BrandId);
             if(Filter.SectionId != null)
                 result = result.Where(product => product.SectionId == Filter.SectionId);
             return result;
