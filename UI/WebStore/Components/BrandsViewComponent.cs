@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +11,7 @@ namespace WebStore.Components
     {
         private readonly IProductData _ProductData;
 
-        public BrandsViewComponent(IProductData ProductData) => _ProductData = ProductData;
+        public BrandsViewComponent(IProductData productData) => _ProductData = productData;
 
         public async Task<IViewComponentResult> InvokeAsync() => View(GetBrands());
 

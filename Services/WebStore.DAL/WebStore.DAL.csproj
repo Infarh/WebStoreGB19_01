@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,9 +11,15 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
+  
   <ItemGroup>
-    <ProjectReference Include="..\WebStore.Domain\WebStore.Domain.csproj" />
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>C:\Users\User\.nuget\packages\microsoft.entityframeworkcore\2.2.2\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebStore.Domain\WebStore.Domain.csproj" />
   </ItemGroup>
 
 </Project>
