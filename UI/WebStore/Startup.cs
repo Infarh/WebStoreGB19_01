@@ -5,14 +5,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebStore.Clients.Employees;
+using WebStore.Clients.Orders;
+using WebStore.Clients.Products;
 using WebStore.Clients.Values;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
-using WebStore.Interfaces;
 using WebStore.Interfaces.Api;
 using WebStore.Interfaces.Services;
 using WebStore.Services;
-using WebStore.Services.InMemory;
 using WebStore.Services.Sql;
 
 namespace WebStore
@@ -28,11 +29,14 @@ namespace WebStore
             services.AddMvc();
 
             services.AddTransient<IValuesService, ValuesClient>();
-            services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
+            services.AddTransient<IEmployeesData, EmployeesClient>();
+            //services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
             //services.AddScoped<IProductData, InMemoryProductData>();
-            services.AddScoped<IProductData, SqlProductData>();
+            services.AddScoped<IProductData, ProductsClient>();
+            //services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<ICartService, CookieCartService>();
-            services.AddScoped<IOrderService, SqlOrderService>();
+            services.AddScoped<IOrderService, OrdersClient>();
+            //services.AddScoped<IOrderService, SqlOrderService>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<WebStoreContext>()
