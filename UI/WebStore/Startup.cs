@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebStore.Clients.Values;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
 using WebStore.Interfaces;
+using WebStore.Interfaces.Api;
 using WebStore.Services;
 
 namespace WebStore
@@ -22,6 +24,8 @@ namespace WebStore
         {
             services.AddMvc();
 
+            services.AddTransient<IValuesService, ValuesClient>();
+            
             services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
             //services.AddScoped<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SqlProductData>();
