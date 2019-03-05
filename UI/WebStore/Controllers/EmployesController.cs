@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Domain.ViewModels;
 using WebStore.Interfaces;
+using WebStore.Interfaces.Services;
 
 namespace WebStore.Controllers
 {
@@ -20,10 +21,7 @@ namespace WebStore.Controllers
 
         //[Route("Get")]
         //[TestActionFilter]
-        public IActionResult Index()
-        {
-            return View(_EmployeesData.Get());
-        }
+        public IActionResult Index() => View(_EmployeesData.GetAll());
 
         public IActionResult Details(int? id)
         {

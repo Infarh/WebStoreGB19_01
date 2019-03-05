@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using WebStore.Domain.DTO.Order;
 using WebStore.Domain.ViewModels;
-using WebStore.Interfaces;
+using WebStore.Interfaces.Services;
 
 namespace WebStore.Controllers
 {
@@ -9,10 +11,10 @@ namespace WebStore.Controllers
         private readonly ICartService _CartService;
         private readonly IOrderService _OrderService;
 
-        public CartController(ICartService CartService, IOrderService OrderService)
+        public CartController(ICartService cartService, IOrderService orderService)
         {
-            _CartService = CartService;
-            _OrderService = OrderService;
+            _CartService = cartService;
+            _OrderService = orderService;
         }
 
         public IActionResult Details()
@@ -30,9 +32,9 @@ namespace WebStore.Controllers
             return RedirectToAction("Details");
         }
 
-        public IActionResult RemoveFromCart(int Id)
+        public IActionResult RemoveFromCart(int id)
         {
-            _CartService.RemoveFromCart(Id);
+            _CartService.RemoveFromCart(id);
             return RedirectToAction("Details");
         }
 
@@ -42,10 +44,10 @@ namespace WebStore.Controllers
             return RedirectToAction("Details");
         }
 
-        public IActionResult AddToCart(int Id, string ReturnUrl)
+        public IActionResult AddToCart(int id, string returnUrl)
         {
-            _CartService.AddToCart(Id);
-            return Redirect(ReturnUrl);
+            _CartService.AddToCart(id);
+            return Redirect(returnUrl);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -58,10 +60,17 @@ namespace WebStore.Controllers
                     OrderViewModel = model
                 });
 
-            var order = _OrderService.CreateOrder(
-                model,
-                _CartService.TransformCart(),
-                User.Identity.Name);
+            var createOrderModel = new CreateOrderModel()
+            {
+                OrderViewModel = model,
+                Items = _CartService.TransformCart().Items.Select(item => new OrderItemDto()
+                {
+                    Id = item.Key.Id,
+                    Quantity = item.Value
+                }).ToList()
+            };
+            
+            var order = _OrderService.CreateOrder(createOrderModel, User.Identity.Name);
             _CartService.RemoveAll();
             return RedirectToAction("OrderConfirmed", new { id = order.Id });
         }
