@@ -30,13 +30,9 @@ namespace WebStore
 
             services.AddTransient<IValuesService, ValuesClient>();
             services.AddTransient<IEmployeesData, EmployeesClient>();
-            //services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
-            //services.AddScoped<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, ProductsClient>();
-            //services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<ICartService, CookieCartService>();
             services.AddScoped<IOrderService, OrdersClient>();
-            //services.AddScoped<IOrderService, SqlOrderService>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<WebStoreContext>()
