@@ -19,15 +19,11 @@ namespace WebStore.Components
         }
 
 
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            var sections = GetSections();
-            return View(sections);
-        }
+        public IViewComponentResult Invoke() => View(GetSections());
 
         private List<SectionViewModel> GetSections()
         {
-            var sections = _ProductData.GetSections();
+            var sections = _ProductData.GetSections().ToArray();
             var parent_sections = sections.Where(section => section.ParentId is null).ToArray();
 
             var parent_sections_views = parent_sections
