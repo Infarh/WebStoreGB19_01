@@ -15,7 +15,9 @@ using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
 using WebStore.Interfaces.Api;
 using WebStore.Interfaces.Services;
+using WebStore.Logger;
 using WebStore.Services;
+using WebStore.Services.MiddleWare;
 using WebStore.Services.Sql;
 
 namespace WebStore
@@ -90,8 +92,10 @@ namespace WebStore
             //});
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory log)
         {
+            log.AddLog4Net();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -101,6 +105,10 @@ namespace WebStore
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseStatusCodePagesWithRedirects("~/home/ErrorStatus/{0}");
+
+            app.UseMiddleware(typeof(ErrorHandlingMiddleWare));
 
             app.UseMvc(route =>
             {

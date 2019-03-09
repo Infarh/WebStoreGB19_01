@@ -10,7 +10,7 @@ namespace WebStore.Controllers
         //public HomeController(IValuesService ValuesService) => _ValuesService = ValuesService;
 
         public IActionResult Index() => View();
-         
+
         public IActionResult ContactUs() => View();
 
         public IActionResult Cart() => View();
@@ -21,7 +21,18 @@ namespace WebStore.Controllers
 
         public IActionResult ErrorPage404() => View();
 
-        public IActionResult ValuesServiceTest([FromServices] IValuesService ValuesService) => 
+        public IActionResult ErrorStatus(string id)
+        {
+            switch (id)
+            {
+                case "404":
+                    return RedirectToAction(nameof(ErrorPage404));
+                default:
+                    return Content($"Статусный код ошибки {id}");
+            }
+        }
+
+        public IActionResult ValuesServiceTest([FromServices] IValuesService ValuesService) =>
             View(ValuesService.Get());
     }
 }
