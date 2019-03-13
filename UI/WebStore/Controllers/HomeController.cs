@@ -5,10 +5,6 @@ namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly IValuesService _ValuesService;
-
-        //public HomeController(IValuesService ValuesService) => _ValuesService = ValuesService;
-
         public IActionResult Index() => View();
 
         public IActionResult ContactUs() => View();
