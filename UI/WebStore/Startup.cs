@@ -34,11 +34,6 @@ namespace WebStore
             services.AddScoped<IOrderService, OrdersClient>();
             
             services.AddTransient<IUsersClient, UsersClient>();
-//            services.AddIdentity<User, IdentityRole>()
-//                .AddEntityFrameworkStores<WebStoreContext>()
-//                .AddDefaultTokenProviders();
-
-            
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<WebStoreContext>()
                 .AddDefaultTokenProviders();
