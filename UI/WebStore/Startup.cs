@@ -35,7 +35,8 @@ namespace WebStore
             services.AddTransient<IValuesService, ValuesClient>();
             services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddScoped<IProductData, ProductsClient>();
-            services.AddScoped<ICartService, CookieCartService>();
+            services.AddScoped<ICartStore, CookiesCartStore>();
+            services.AddScoped<ICartService, CartService>();
             services.AddScoped<IOrderService, OrdersClient>();
 
             services.AddTransient<IUsersClient, UsersClient>();
