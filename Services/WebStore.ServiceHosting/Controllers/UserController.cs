@@ -14,11 +14,11 @@ namespace WebStore.ServiceHosting.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private readonly UserStore<User> _UserStore;
 
-        public UserController(WebStoreContext db)
+        public UsersController(WebStoreContext db)
         {
             _UserStore = new UserStore<User>(db)
             {
@@ -74,13 +74,13 @@ namespace WebStore.ServiceHosting.Controllers
             return (await _UserStore.DeleteAsync(user)).Succeeded;
         }
 
-        [HttpGet("User/Find/{id")]
+        [HttpGet("User/Find/{id}")]
         public async Task<User> FindByIdAsync(string id)
         {
             return await _UserStore.FindByIdAsync(id);
         }
 
-        [HttpGet("User/Normal/{name")]
+        [HttpGet("User/Normal/{name}")]
         public async Task<User> FindByNameAsync(string name)
         {
             return await _UserStore.FindByNameAsync(name);

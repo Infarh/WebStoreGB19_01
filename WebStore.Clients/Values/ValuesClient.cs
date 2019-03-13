@@ -22,7 +22,7 @@ namespace WebStore.Clients.Values
          
         public async Task<IEnumerable<string>> GetAsync()
         {
-            var result = await _Client.GetAsync(ServiceAddress);
+            var result = await Client.GetAsync(ServiceAddress);
             
             if (result.IsSuccessStatusCode)
                 return await  result.Content.ReadAsAsync<List<string>>();
@@ -34,7 +34,7 @@ namespace WebStore.Clients.Values
         
         public async Task<string> GetAsync(int id)
         {
-            var result = await _Client.GetAsync($"{ServiceAddress}/get/{id}");
+            var result = await Client.GetAsync($"{ServiceAddress}/get/{id}");
             
             if (result.IsSuccessStatusCode)
                 return await  result.Content.ReadAsAsync<string>();
@@ -46,7 +46,7 @@ namespace WebStore.Clients.Values
         
         public async Task<Uri> PostAsync(string value)
         {
-            var result = await _Client.PostAsJsonAsync($"{ServiceAddress}/post", value);
+            var result = await Client.PostAsJsonAsync($"{ServiceAddress}/post", value);
 
             result.EnsureSuccessStatusCode();
 
@@ -57,7 +57,7 @@ namespace WebStore.Clients.Values
         
         public async Task<HttpStatusCode> PutAsync(int id, string value)
         {
-            var result = await _Client.PutAsJsonAsync($"{ServiceAddress}/put/{id}", value);
+            var result = await Client.PutAsJsonAsync($"{ServiceAddress}/put/{id}", value);
 
             result.EnsureSuccessStatusCode();
 
@@ -68,7 +68,7 @@ namespace WebStore.Clients.Values
         
         public async Task<HttpStatusCode> DeleteAsync(int id)
         {
-            var result = await _Client.DeleteAsync($"{ServiceAddress}/delete/{id}");
+            var result = await Client.DeleteAsync($"{ServiceAddress}/delete/{id}");
 
             return result.StatusCode;
         }
