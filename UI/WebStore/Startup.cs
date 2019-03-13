@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using WebStore.Clients.Employees;
 using WebStore.Clients.Orders;
 using WebStore.Clients.Products;
+using WebStore.Clients.User;
+using WebStore.Clients.Users;
 using WebStore.Clients.Values;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
@@ -30,12 +32,33 @@ namespace WebStore
             services.AddTransient<IValuesService, ValuesClient>();
             services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddScoped<IProductData, ProductsClient>();
-            services.AddScoped<IOrderService, OrdersClient>();
             services.AddScoped<ICartService, CookieCartService>();
+            services.AddScoped<IOrderService, OrdersClient>();
+            
+            services.AddTransient<IUsersClient, UsersClient>();
+            services.AddIdentity<User, IdentityRole>()
+                //.AddEntityFrameworkStores<WebStoreContext>()
+                .AddDefaultTokenProviders();
 
+            
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<WebStoreContext>()
                 .AddDefaultTokenProviders();
+            
+            #region Custom identity
+
+            services.AddTransient<IUserStore<User>, UsersClient>();
+            services.AddTransient<IUserRoleStore<User>, UsersClient>();
+            services.AddTransient<IUserClaimStore<User>, UsersClient>();
+            services.AddTransient<IUserPasswordStore<User>, UsersClient>();
+            services.AddTransient<IUserTwoFactorStore<User>, UsersClient>();
+            services.AddTransient<IUserEmailStore<User>, UsersClient>();
+            services.AddTransient<IUserPhoneNumberStore<User>, UsersClient>();
+            services.AddTransient<IUserLoginStore<User>, UsersClient>();
+            services.AddTransient<IUserLockoutStore<User>, UsersClient>();
+            services.AddTransient<IRoleStore<IdentityRole>, RolesClient>();
+
+            #endregion
 
             services.Configure<IdentityOptions>(opt =>
             {
@@ -64,10 +87,10 @@ namespace WebStore
                 opt.SlidingExpiration = true;
             });
 
-            services.AddDbContext<WebStoreContext>(opt =>
-            {
-                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+//            services.AddDbContext<WebStoreContext>(opt =>
+//            {
+//                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+//            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

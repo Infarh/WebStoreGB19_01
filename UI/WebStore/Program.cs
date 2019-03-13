@@ -12,26 +12,7 @@ namespace WebStore
     {
         public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).Build();
-
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-
-                try
-                {
-                    var db = services.GetRequiredService<WebStoreContext>();
-                    db.Initialize();
-                    services.InitializeIdentityAsync().Wait();
-                }
-                catch (Exception e)
-                {
-                    services.GetRequiredService<ILogger<Program>>()
-                        .LogError(e, "Ошибка инициализации контекста БД");    
-                }
-            }
-
-            host.Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
