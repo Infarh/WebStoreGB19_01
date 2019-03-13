@@ -11,7 +11,7 @@ using WebStore.Clients.Base;
 using WebStore.Domain.DTO.User;
 using WebStore.Interfaces.Services;
 
-namespace WebStore.Clients.User
+namespace WebStore.Clients.Users
 {
     public class UsersClient : BaseClient, IUsersClient
     {
@@ -32,7 +32,7 @@ namespace WebStore.Clients.User
 
         public async Task<string> GetUserNameAsync(Domain.Entities.User user, CancellationToken cancel)
         {
-            return await (await PostAsync($"{ServiceAddress}/name", user, cancel))
+            return await (await PostAsync($"{ServiceAddress}/userName", user, cancel))
                 .Content
                 .ReadAsAsync<string>(cancel)
                 .ConfigureAwait(false);
@@ -41,7 +41,7 @@ namespace WebStore.Clients.User
         public async Task SetUserNameAsync(Domain.Entities.User user, string name, CancellationToken cancel)
         {
             user.UserName = name;
-            await PostAsync($"{ServiceAddress}/name/{name}", user, cancel)
+            await PostAsync($"{ServiceAddress}/userName/{name}", user, cancel)
                 .ConfigureAwait(false);
         }
 

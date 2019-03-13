@@ -2,13 +2,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebStore.Clients.Employees;
 using WebStore.Clients.Orders;
 using WebStore.Clients.Products;
-using WebStore.Clients.User;
 using WebStore.Clients.Users;
 using WebStore.Clients.Values;
 using WebStore.DAL.Context;
@@ -36,9 +34,9 @@ namespace WebStore
             services.AddScoped<IOrderService, OrdersClient>();
             
             services.AddTransient<IUsersClient, UsersClient>();
-            services.AddIdentity<User, IdentityRole>()
-                //.AddEntityFrameworkStores<WebStoreContext>()
-                .AddDefaultTokenProviders();
+//            services.AddIdentity<User, IdentityRole>()
+//                .AddEntityFrameworkStores<WebStoreContext>()
+//                .AddDefaultTokenProviders();
 
             
             services.AddIdentity<User, IdentityRole>()
