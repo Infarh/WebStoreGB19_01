@@ -10,7 +10,7 @@ namespace WebStore.Domain.DTO.User
         public Entities.User User { get; }
     }
     
-    public class AddClaimDto : IdentityModelDto
+    public class AddClaimsDto : IdentityModelDto
     {
         public IEnumerable<Claim> Claims { get; set; }
     }
@@ -20,10 +20,10 @@ namespace WebStore.Domain.DTO.User
         public IEnumerable<Claim> Claims { get; set; }
     }
 
-    public class ReplaceClaimDto : IdentityModelDto
+    public class ReplaceClaimsDto : IdentityModelDto
     {
-        public Claim OldClaims { get; set; }
-        public Claim NewClaims { get; set; }
+        public Claim OldClaim { get; set; }
+        public Claim NewClaim { get; set; }
     }
     
     public class AddLoginDto : IdentityModelDto
@@ -31,7 +31,7 @@ namespace WebStore.Domain.DTO.User
         public UserLoginInfo UserLoginInfo { get; set; }
     }
 
-    public class PasswordHashDto
+    public class PasswordHashDto : IdentityModelDto
     {
         public string Hash { get; set; }
     }
