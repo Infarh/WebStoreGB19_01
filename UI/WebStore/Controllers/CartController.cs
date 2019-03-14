@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using WebStore.Domain.DTO.Order;
 using WebStore.Domain.ViewModels;
 using WebStore.Interfaces.Services;
@@ -51,7 +52,7 @@ namespace WebStore.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult CheckOut(OrderViewModel model)
+        public IActionResult CheckOut(OrderViewModel model, [FromServices] ILogger<CartController> logger)
         {
             if (!ModelState.IsValid)
                 return View("Details", new DetailsViewModel
@@ -60,6 +61,8 @@ namespace WebStore.Controllers
                     OrderViewModel = model
                 });
 
+            logger.LogInformation("Оформление заказа");
+            
             var createOrderModel = new CreateOrderModel()
             {
                 OrderViewModel = model,
