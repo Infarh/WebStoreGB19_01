@@ -12,11 +12,11 @@ namespace WebStore.Logger
 
         public Log4NetLogger(string name, XmlElement xml)
         {
-            var logger_repository = LogManager.CreateRepository(
+            var loggerRepository = LogManager.CreateRepository(
                 Assembly.GetEntryAssembly(), 
                 typeof(log4net.Repository.Hierarchy.Hierarchy));
-            _Log = LogManager.GetLogger(logger_repository.Name, name);
-            log4net.Config.XmlConfigurator.Configure(logger_repository, xml);
+            _Log = LogManager.GetLogger(loggerRepository.Name, name);
+            log4net.Config.XmlConfigurator.Configure(loggerRepository, xml);
         }
 
         public bool IsEnabled(LogLevel level)

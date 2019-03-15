@@ -20,6 +20,18 @@ namespace WebStore.Controllers
         public IActionResult Blog() => View();
 
         public IActionResult ErrorPage404() => View();
+        
+        public IActionResult ErrorStatus(string id)
+        {
+            switch (id)
+            {
+                case "404":
+                    return RedirectToAction(nameof(ErrorPage404));
+                
+                default:
+                    return Content($"Error status {id}");
+            }
+        }
 
         public IActionResult ValuesServiceTest([FromServices] IValuesService valuesService) => View(valuesService.Get());
     }

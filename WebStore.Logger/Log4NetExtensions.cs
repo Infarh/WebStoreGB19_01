@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
@@ -15,6 +16,8 @@ namespace WebStore.Logger
             {
                 var assembly = Assembly.GetEntryAssembly();
                 var dir = Path.GetDirectoryName(assembly.Location);
+                
+                Debug.Assert(dir != null, nameof(dir) + " != null");
                 configurationFile = Path.Combine(dir, configurationFile);
             }
 

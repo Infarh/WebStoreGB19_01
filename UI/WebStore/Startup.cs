@@ -14,7 +14,9 @@ using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
 using WebStore.Interfaces.Api;
 using WebStore.Interfaces.Services;
+using WebStore.Logger;
 using WebStore.Services;
+using WebStore.Services.MiddleWare;
 
 namespace WebStore
 {
@@ -80,15 +82,12 @@ namespace WebStore
 
                 opt.SlidingExpiration = true;
             });
-
-//            services.AddDbContext<WebStoreContext>(opt =>
-//            {
-//                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-//            });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
         {
+            factory.AddLog4Net();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -98,6 +97,10 @@ namespace WebStore
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            
+            app.UseStatusCodePagesWithRedirects("~/home/ErrorStatus/{0}");
+            
+            app.UseMiddleware(typeof(ErrorHandlingMiddleWare));
 
             app.UseMvc(route =>
             {
