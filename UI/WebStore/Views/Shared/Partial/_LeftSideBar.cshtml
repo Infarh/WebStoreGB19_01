@@ -1,8 +1,8 @@
 ﻿<div class="left-sidebar">
 
-    @await Component.InvokeAsync("Section")
+    @await Component.InvokeAsync("Section", new { SectionId = Context.Request.Query["SectionId"].ToString() })
 
-    @await Component.InvokeAsync("Brands");
+    @await Component.InvokeAsync("Brands", new { BrandId = Context.Request.Query["BrandId"].ToString() });
 
     @*
     <div class="price-range">
