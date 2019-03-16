@@ -10,7 +10,7 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@product.Id">
+                        <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@product.Id" asp-route-FromBrand="true">
                             <img src="~/images/shop/@product.ImageUrl" alt="@product.Name" />
                             <h2>@product.Price.ToString("C")</h2>
                             <p>@product.Name</p>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="product-overlay">
                         <div class="overlay-content">
-                            <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@product.Id">
+                            <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@product.Id" asp-route-FromBrand="true">
                                 <img src="~/images/shop/@product.ImageUrl" alt="@product.Name" />
                                 <h2>@product.Price.ToString("C")</h2>
                                 <p>@product.Name</p>

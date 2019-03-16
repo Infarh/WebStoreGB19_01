@@ -21,28 +21,22 @@ namespace WebStore.ServiceHosting.Controllers
         #region Implementation of IProductData
 
         [HttpGet("sections")]
-        public IEnumerable<Section> GetSections()
-        {
-            return _ProductData.GetSections();
-        }
+        public IEnumerable<Section> GetSections() => _ProductData.GetSections();
+
+        [HttpGet("sections/{id}")]
+        public Section GetSectionById(int id) => _ProductData.GetSectionById(id);
 
         [HttpGet("brands")]
-        public IEnumerable<Brand> GetBrands()
-        {
-            return _ProductData.GetBrands();
-        }
+        public IEnumerable<Brand> GetBrands() => _ProductData.GetBrands();
+
+        [HttpGet("brands/{id}")]
+        public Brand GetBrandById(int id) => _ProductData.GetBrandById(id);
 
         [HttpPost, ActionName("Post")]
-        public IEnumerable<ProductDTO> GetProducts([FromBody] ProductFilter Filter = null)
-        {
-            return _ProductData.GetProducts(Filter);
-        }
+        public IEnumerable<ProductDTO> GetProducts([FromBody] ProductFilter Filter = null) => _ProductData.GetProducts(Filter);
 
         [HttpGet("{id}"), ActionName("Get")]
-        public ProductDTO GetProductById(int id)
-        {
-            return _ProductData.GetProductById(id);
-        }
+        public ProductDTO GetProductById(int id) => _ProductData.GetProductById(id);
 
         #endregion
     }

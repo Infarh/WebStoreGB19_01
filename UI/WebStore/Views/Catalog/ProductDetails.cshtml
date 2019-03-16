@@ -1,6 +1,7 @@
 ﻿@model WebStore.Domain.ViewModels.ProductViewModel
 @{
     ViewData["Title"] = "Информация о товаре " + Model.Name;
+    Layout = "_LayoutBreadcrumbs";
 }
 
 <div class="row">
@@ -61,7 +62,7 @@
                         <input type="text" value="3" />
                         <a asp-controller="Cart" asp-action="AddToCart"
                            asp-route-Id="@Model.Id"
-                           asp-route-ReturnUrl="@Context.Request.Path" 
+                           asp-route-ReturnUrl="@Context.Request.Path"
                            class="btn btn-default cart">
                             <i class="fa fa-shopping-cart"></i>Добавить в корзину
                         </a>
@@ -73,7 +74,7 @@
                 </div><!--/product-information-->
             </div>
         </div><!--/product-details-->
-       @await Html.PartialAsync("Partial/_CategoryTab")
-       @await Html.PartialAsync("Partial/_RecomendedItems")
+        @await Html.PartialAsync("Partial/_CategoryTab")
+        @await Html.PartialAsync("Partial/_RecomendedItems")
     </div>
 </div>

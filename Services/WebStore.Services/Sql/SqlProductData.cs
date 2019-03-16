@@ -14,20 +14,15 @@ namespace WebStore.Services.Sql
     {
         private readonly WebStoreContext _db;
 
-        public SqlProductData(WebStoreContext db)
-        {
-            _db = db;
-        }
+        public SqlProductData(WebStoreContext db) => _db = db;
 
-        public IEnumerable<Brand> GetBrands()
-        {
-            return _db.Brands.AsEnumerable();
-        }
+        public IEnumerable<Brand> GetBrands() => _db.Brands.AsEnumerable();
 
-        public IEnumerable<Section> GetSections()
-        {
-            return _db.Sections.AsEnumerable();
-        }
+        public Brand GetBrandById(int id) => _db.Brands.FirstOrDefault(b => b.Id == id);
+
+        public IEnumerable<Section> GetSections() => _db.Sections.AsEnumerable();
+
+        public Section GetSectionById(int id) => _db.Sections.FirstOrDefault(s => s.Id == id);
 
         public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null)
         {

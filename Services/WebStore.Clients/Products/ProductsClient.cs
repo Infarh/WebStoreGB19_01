@@ -18,26 +18,20 @@ namespace WebStore.Clients.Products
 
         #region Implementation of IProductData
 
-        public IEnumerable<Section> GetSections()
-        {
-            return Get<List<Section>>($"{ServiceAddress}/sections");
-        }
+        public IEnumerable<Section> GetSections() => Get<List<Section>>($"{ServiceAddress}/sections");
 
-        public IEnumerable<Brand> GetBrands()
-        {
-            return Get<List<Brand>>($"{ServiceAddress}/brands");
-        }
+        public Section GetSectionById(int id) => Get<Section>($"{ServiceAddress}/sections/{id}");
+
+        public IEnumerable<Brand> GetBrands() => Get<List<Brand>>($"{ServiceAddress}/brands");
+
+        public Brand GetBrandById(int id) => Get<Brand>($"{ServiceAddress}/brands/{id}");
 
         public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null)
         {
-            var response = Post(ServiceAddress, Filter);
-            return response.Content.ReadAsAsync<IEnumerable<ProductDTO>>().Result;
+            return Post(ServiceAddress, Filter).Content.ReadAsAsync<IEnumerable<ProductDTO>>().Result;
         }
 
-        public ProductDTO GetProductById(int id)
-        {
-            return Get<ProductDTO>($"{ServiceAddress}/{id}");
-        }
+        public ProductDTO GetProductById(int id) => Get<ProductDTO>($"{ServiceAddress}/{id}");
 
         #endregion
     }
