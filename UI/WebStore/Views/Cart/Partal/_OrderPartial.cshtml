@@ -20,7 +20,7 @@
             {
                 var sum = (decimal) SumCart;
                 <ul>
-                    <li>Итого <span>@sum.ToString("C")</span></li>
+                    <li>Итого <span id="totalOrderSum">@sum.ToString("C")</span></li>
                 </ul>
                 if (sum > 0)
                 {

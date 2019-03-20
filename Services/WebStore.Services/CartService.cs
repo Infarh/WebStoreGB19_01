@@ -63,7 +63,7 @@ namespace WebStore.Services
             var products = _ProductData.GetProducts(new ProductFilter
             {
                 Ids = _CartStore.Cart.Items.Select(i => i.ProductId).ToArray()
-            }).Select(p => new ProductViewModel
+            }).Products.Select(p => new ProductViewModel
             {
                 Id = p.Id,
                 ImageUrl = p.ImageUrl,

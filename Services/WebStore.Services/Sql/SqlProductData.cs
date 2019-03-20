@@ -24,14 +24,17 @@ namespace WebStore.Services.Sql
 
         public Section GetSectionById(int id) => _db.Sections.FirstOrDefault(s => s.Id == id);
 
-        public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null)
+        public PagedProductDTO GetProducts(ProductFilter Filter = null)
         {
+            IQueryable<Product> query = _db.Products
+                .Include(p => p.Brand)
+                .Include(p => p.Section);
             if (Filter is null)
-                return _db.Products
-                    .Include(p => p.Brand)
-                    .Include(p => p.Section)
-                    .AsEnumerable()
-                    .Select(ProductDTO2Product.Map);
+                return new PagedProductDTO
+                {
+                    Products = query.AsEnumerable().Select(ProductDTO2Product.Map),
+                    TotalCount = query.Count()
+                };
 
             IQueryable<Product> result = _db.Products
                 .Include(p => p.Brand)
@@ -41,7 +44,19 @@ namespace WebStore.Services.Sql
                 result = result.Where(p => p.BrendId == Filter.BrandId);
             if (Filter.SectionId != null)
                 result = result.Where(p => p.SectionId == Filter.SectionId);
-            return result.AsEnumerable().Select(ProductDTO2Product.Map);
+
+            var total_count = result.Count();
+
+            if (Filter.PageSize != null)
+                result = result
+                    .Skip((Filter.Page - 1) * (int) Filter.PageSize)
+                    .Take((int)Filter.PageSize);
+
+            return new PagedProductDTO
+            {
+                Products = result.AsEnumerable().Select(ProductDTO2Product.Map),
+                TotalCount = total_count
+            };
         }
 
         public ProductDTO GetProductById(int id)

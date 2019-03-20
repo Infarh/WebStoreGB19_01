@@ -9,4 +9,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebStore.Domain\WebStore.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

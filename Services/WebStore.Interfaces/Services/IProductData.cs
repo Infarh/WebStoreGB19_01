@@ -15,7 +15,7 @@ namespace WebStore.Interfaces.Services
 
         Section GetSectionById(int id);
 
-        IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null);
+        PagedProductDTO GetProducts(ProductFilter Filter = null);
 
         ProductDTO GetProductById(int id);
     }

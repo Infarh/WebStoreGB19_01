@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +55,8 @@
             Cart.init({
                 addToCartLink: "@Url.Action("AddToCart","Cart")",
                 getCartViewLink: "@Url.Action("GetCartView", "Cart")",
-                removeFromCartLink: "@Url.Action("RemoveFromCart", "Cart")"
+                removeFromCartLink: "@Url.Action("RemoveFromCart", "Cart")",
+                decrementLink: "@Url.Action("DecrementFromCart", "Cart")"
             });
         });
     </script>

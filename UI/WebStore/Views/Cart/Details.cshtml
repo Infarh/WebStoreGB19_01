@@ -29,35 +29,27 @@
 
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="images/cart/one.png" alt=""></a>
+                            <a href=""><img src="images/shop/@item.Key.ImageUrl" alt=""></a>
                         </td>
                         <td class="cart_description">
-                            <h4>
-                                <a asp-controller="Catalog"
-                                   asp-action="ProductDetails"
-                                   asp-route-id="@item.Key.Id">@item.Key.Name</a>
-                            </h4>
+                            <h4><a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@item.Key.Id">@item.Key.Name</a></h4>
                             <p>Артикул: 1089772</p>
                         </td>
-                        <td class="cart_price">
-                            <p>@(item.Key.Price.ToString("C"))</p>
+                        <td class="cart_price" data-price="@item.Key.Price">
+                            <p>@item.Key.Price.ToString("C")</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href="#" data-id="@item.Key.Id">+</a>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                <a class="cart_quantity_down" href="#" data-id="@item.Key.Id">-</a>
+                                <a class="cart_quantity_up" data-id="@item.Key.Id"> + </a>
+                                <input class="cart_quantity_input" type="text" name="quantity" value="@item.Value" autocomplete="off" size="2">
+                                <a class="cart_quantity_down" data-id="@item.Key.Id"> - </a>
                             </div>
                         </td>
                         <td class="cart_total">
-                            <p class="cart_total_price">
-                                @((item.Key.Price * item.Value).ToString("C"))
-                            </p>
+                            <p class="cart_total_price">@((item.Value * item.Key.Price).ToString("C"))</p>
                         </td>
                         <td class="cart_delete">
-                            <a class="cart_quantity_delete" href="#" data-id="@item.Key.Id">
-                                <i class="fa fa-times"></i>
-                            </a>
+                            <a class="cart_quantity_delete" data-id="@item.Key.Id"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                 }
