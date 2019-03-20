@@ -31,16 +31,16 @@ namespace WebStore.Controllers
             });
         }
 
-        public IActionResult DecrementFromCart(int id)
+        public IActionResult DecrementFromCart(int Id)
         {
-            _CartService.DecrementFromCart(id);
-            return RedirectToAction("Details");
+            _CartService.DecrementFromCart(Id);
+            return Json(new { Id, message = "Количество товара уменьшено на 1" });
         }
 
         public IActionResult RemoveFromCart(int Id)
         {
             _CartService.RemoveFromCart(Id);
-            return RedirectToAction("Details");
+            return Json(new { Id, message = "Товар удалён из корзины" });
         }
 
         public IActionResult RemoveAll()
