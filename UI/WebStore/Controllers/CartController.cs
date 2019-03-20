@@ -20,6 +20,8 @@ namespace WebStore.Controllers
             _OrderService = OrderService;
         }
 
+        public IActionResult GetCartView() => ViewComponent("Cart");
+
         public IActionResult Details()
         {
             return View(new DetailsViewModel
@@ -47,10 +49,10 @@ namespace WebStore.Controllers
             return RedirectToAction("Details");
         }
 
-        public IActionResult AddToCart(int Id, string ReturnUrl)
+        public IActionResult AddToCart(int Id)
         {
             _CartService.AddToCart(Id);
-            return Redirect(ReturnUrl);
+            return Json(new { Id, message = "Товар добавлен в корзину" });
         }
 
         [HttpPost, ValidateAntiForgeryToken]

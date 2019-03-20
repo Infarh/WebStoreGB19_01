@@ -15,11 +15,7 @@
                             <h2>@product.Price.ToString("C")</h2>
                             <p>@product.Name</p>
                         </a>
-                        <a asp-controller="Cart"
-                           asp-action="AddToCart"
-                           asp-route-Id="@product.Id"
-                           asp-route-ReturnUrl="@Context.Request.Path"
-                           class="btn btn-default add-to-cart">
+                        <a href="#" class="btn btn-default add-to-cart CallAddToCart" data-id="@product.Id">
                             <i class="fa fa-shopping-cart"></i>Добавить в корзину
                         </a>
                     </div>
@@ -30,11 +26,7 @@
                                 <h2>@product.Price.ToString("C")</h2>
                                 <p>@product.Name</p>
                             </a>
-                            <a asp-controller="Cart"
-                               asp-action="AddToCart"
-                               asp-route-Id="@product.Id"
-                               asp-route-ReturnUrl="@Context.Request.Path"
-                               class="btn btn-default add-to-cart">
+                            <a href="#" class="btn btn-default add-to-cart CallAddToCart" data-id="@product.Id">
                                 <i class="fa fa-shopping-cart"></i>Добавить в корзину
                             </a>
                         </div>
