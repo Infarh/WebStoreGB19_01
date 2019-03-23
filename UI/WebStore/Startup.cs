@@ -13,6 +13,7 @@ using WebStore.Clients.Users;
 using WebStore.Clients.Values;
 using WebStore.DAL.Context;
 using WebStore.Domain.Entities;
+using WebStore.Hubs;
 using WebStore.Interfaces.Api;
 using WebStore.Interfaces.Services;
 using WebStore.Logger;
@@ -31,6 +32,8 @@ namespace WebStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSignalR();
 
             services.AddTransient<IValuesService, ValuesClient>();
             services.AddTransient<IEmployeesData, EmployeesClient>();
@@ -110,6 +113,8 @@ namespace WebStore
             app.UseStatusCodePagesWithRedirects("~/home/ErrorStatus/{0}");
 
             app.UseMiddleware(typeof(ErrorHandlingMiddleWare));
+
+            app.UseSignalR(routes => routes.MapHub<InformatilHub>("/info"));
 
             app.UseMvc(route =>
             {

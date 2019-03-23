@@ -43,8 +43,12 @@
       "destination": "wwwroot/jquery/jquery-validate/",
       "files": [
         "jquery.validate.min.js",
-        "localization/messages_ru.min.js" 
+        "localization/messages_ru.min.js"
       ]
+    },
+    {
+      "library": "signalr.js@2.4.0",
+      "destination": "wwwroot/lib/signalr.js/"
     }
   ]
 }

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "SignalRTest";
+}
+
+<h2>SignalRTest</h2>
+
+<div>
+    <div id="InputForm">
+        <input type="text" id="message" />
+        <input type="button" id="SendButton" value="Отправить" />
+    </div>
+    <div id="InformationBlock"></div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/signalr.min.js"></script>
+    <script>
+        let hub_url = "http://localhost:5000/info";
+
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl(hub_url)
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+        connection.on("Send", function (data)
+        {
+            let element = document.createElement("p");
+            element.appendChild(document.createTextNode(data));
+            let first_element = document.getElementById("InformationBlock").firstChild;
+            document.getElementById("InformationBlock").insertBefore(element, first_element);
+        });
+
+        $(function() {
+            $("#SendButton").click(e => {
+                let information = document.getElementById("message").value;
+                connection.invoke("Send", information);
+            });
+        });
+
+        connection.start();
+    </script>
+}
