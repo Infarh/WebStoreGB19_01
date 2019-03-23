@@ -19,6 +19,32 @@
       "provider": "unpkg",
       "library": "bootstrap@3.3.7",
       "destination": "wwwroot/bootstrap/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/jquery/jquery-ajax-unobtrusive/",
+      "files": [
+        "dist/jquery.unobtrusive-ajax.js",
+        "dist/jquery.unobtrusive-ajax.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/jquery/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "jquery-loading-overlay@2.1.6",
+      "destination": "wwwroot/jquery/jquery-loading-overlay/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-validate@1.19.0",
+      "destination": "wwwroot/jquery/jquery-validate/",
+      "files": [
+        "jquery.validate.min.js",
+        "localization/messages_ru.min.js" 
+      ]
     }
   ]
 }

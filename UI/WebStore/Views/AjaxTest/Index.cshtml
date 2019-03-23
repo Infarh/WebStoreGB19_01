@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Ненавязчивый Ajax...</h2>
+
+<div class="row">
+    <div class="col-sm-3">
+        <h3>От сервера...</h3>
+        <a href="#" data-ajax="true"
+           data-ajax-url="@Url.Action("GetTestView", "AjaxTest")"
+           data-ajax-update="#panel"
+           data-ajax-loading="#spinner">
+            Get time
+        </a>
+        <span id="spinner" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>
+        <div id="panel"></div>
+    </div>
+
+    <div class="col-sm-3">
+        <h3>На стороне клиента</h3>
+        <a href="#" data-ajax="true"
+           data-ajax-url="@Url.Action("GetJSON", "AjaxTest")"
+           data-ajax-success="LoadDataSuccess"
+           data-ajax-loading="#spinner2">
+            Вызов
+        </a>
+        <span id="spinner2" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>
+        <div id="Result"></div>
+    </div>
+    
+    <div class="col-sm-3">
+        <h3>JS</h3>
+        <a href="#" id="StartButton">Запуск</a>
+        <div id="DataHost"></div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/jquery/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        var LoadDataSuccess = function (data) {
+            var host = $("#Result");
+            host.empty();
+            host.append(data.message);
+            host.append(data.serverTime);
+        }
+
+        $("#StartButton").click(() => {
+            console.log("Send button click");
+            $.getJSON("@Url.Action("GetJSON", "AjaxTest")", { id: 5, msg: "Hello World!" })
+                .done(data =>
+                {
+                    const host = $("#DataHost");
+                    host.empty();
+                    host.append(data.message);
+                    host.append(data.serverTime);
+                });
+        });
+    </script>
+}

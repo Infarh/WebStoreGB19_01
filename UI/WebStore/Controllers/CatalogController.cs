@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using WebStore.Domain.Entities;
 using WebStore.Domain.ViewModels;
@@ -72,6 +73,33 @@ namespace WebStore.Controllers
                 Price = product.Price,
                 Brand = product.Brand?.Name ?? string.Empty
             });
+        }
+
+        public async Task<IActionResult> GetFiltredItems(int? SectionId, int? BrandId, int Page = 1)
+        {
+            var products = GetProducts(SectionId, BrandId, Page);
+            await Task.Delay(2000);
+            return PartialView("Partial/_FeaturesItems", products);
+        }
+
+        private IEnumerable<ProductViewModel> GetProducts(int? SectionId, int? BrandId, int Page)
+        {
+            var products = _ProductData.GetProducts(new ProductFilter
+            {
+                SectionId = SectionId,
+                BrandId = BrandId,
+                Page = Page,
+                PageSize = int.Parse(_Configuration["PageSize"])
+            });
+            return products.Products.Select(p => new ProductViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Order = p.Order,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+                Brand = p.Brand?.Name ?? string.Empty
+            }).ToArray();
         }
     }
 }

@@ -14,7 +14,11 @@
             </div>
 
             <div class="col-sm-9 padding-right">
-                @await Html.PartialAsync("Partial/_FeaturesItems", Model.Products)
+              
+                <div id="itemsContainer">
+                    @await Html.PartialAsync("Partial/_FeaturesItems", Model.Products)
+                </div>
+
                 <paging page-moedel="@Model.PageViewModel" page-action="Shop" 
                         page-url-SectionId="@Model.SectionId"
                         page-url-BrandId="@Model.BrandId"></paging>
@@ -23,3 +27,16 @@
     </div>
 </section>
 
+@section Scripts
+{
+    <script src="~/jquery/jquery-loading-overlay/loadingoverlay.min.js"></script>
+    <script src="~/js/Shop/ProductItems.js"></script>
+    
+    <script>
+        $(function() {
+            ProductItems.init({
+                getUrl: "@Url.Action("GetFiltredItems","Catalog")"
+            });
+        });
+    </script>
+}
